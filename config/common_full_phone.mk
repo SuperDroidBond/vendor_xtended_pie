@@ -1,5 +1,5 @@
 # Inherit common stuff
-$(call inherit-product, vendor/syberia/config/common.mk)
+$(call inherit-product, vendor/xtended/config/common.mk)
 
 # Telephony packages
 PRODUCT_PACKAGES += \

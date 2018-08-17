@@ -1,5 +1,5 @@
 #Overlays
-PRODUCT_PACKAGE_OVERLAYS += vendor/syberia/overlay/common
+PRODUCT_PACKAGE_OVERLAYS += vendor/xtended/overlay/common
 
 ifeq ($(PRODUCT_GMS_CLIENTID_BASE),)
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -25,12 +25,12 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.build.selinux=1
 
 PRODUCT_COPY_FILES += \
-    vendor/syberia/prebuilt/common/bin/sysinit:system/bin/sysinit
+    vendor/xtended/prebuilt/common/bin/sysinit:system/bin/sysinit
 
 # Keyboard libs
 PRODUCT_COPY_FILES += \
-    vendor/syberia/prebuilt/lib64/libjni_latinimegoogle.so:system/lib64/libjni_latinimegoogle.so \
-    vendor/syberia/prebuilt/lib64/libjni_latinime.so:system/lib64/libjni_latinime.so
+    vendor/xtended/prebuilt/lib64/libjni_latinimegoogle.so:system/lib64/libjni_latinimegoogle.so \
+    vendor/xtended/prebuilt/lib64/libjni_latinime.so:system/lib64/libjni_latinime.so
 
 # Inherit common product build prop overrides
--include vendor/syberia/config/versions.mk
+-include vendor/xtended/config/versions.mk

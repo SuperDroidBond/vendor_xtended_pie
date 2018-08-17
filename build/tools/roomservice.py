@@ -52,7 +52,7 @@ except:
     device = product
 
 if not depsonly:
-    print("Device %s not found. Attempting to retrieve device repository from Syberia Project Github (http://github.com/SyberiaProject-Devices)." % device)
+    print("Device %s not found. Attempting to retrieve device repository from Project Xtended Github (http://github.com/ProjectXtended-Devices)." % device)
 
 repositories = []
 
@@ -72,7 +72,7 @@ def add_auth(githubreq):
         githubreq.add_header("Authorization","Basic %s" % githubauth)
 
 if not depsonly:
-    githubreq = urllib.request.Request("https://api.github.com/search/repositories?q=%s+user:syberia-project+in:name+fork:true" % device)
+    githubreq = urllib.request.Request("https://api.github.com/search/repositories?q=%s+user:project-xtended+in:name+fork:true" % device)
     add_auth(githubreq)
     try:
         result = json.loads(urllib.request.urlopen(githubreq).read().decode())
@@ -151,9 +151,9 @@ def is_in_manifest(projectpath):
         if localpath.get("path") == projectpath:
             return True
 
-    # ... and don't forget the syberia snippet
+    # ... and don't forget the xtended snippet
     try:
-        lm = ElementTree.parse(".repo/manifests/snippets/syberia.xml")
+        lm = ElementTree.parse(".repo/manifests/snippets/xtended.xml")
         lm = lm.getroot()
     except:
         lm = ElementTree.Element("manifest")
@@ -176,12 +176,12 @@ def add_to_manifest(repositories, fallback_branch = None):
         repo_target = repository['target_path']
         print('Checking if %s is fetched from %s' % (repo_target, repo_name))
         if is_in_manifest(repo_target):
-            print('Syberia Project/%s already fetched to %s' % (repo_name, repo_target))
+            print('Project Xtended/%s already fetched to %s' % (repo_name, repo_target))
             continue
 
-        print('Adding dependency: Syberia Project/%s -> %s' % (repo_name, repo_target))
+        print('Adding dependency: Project Xtended/%s -> %s' % (repo_name, repo_target))
         project = ElementTree.Element("project", attrib = { "path": repo_target,
-            "remote": "github", "name": "Syberia Project/%s" % repo_name })
+            "remote": "github", "name": "Project Xtended/%s" % repo_name })
 
         if 'branch' in repository:
             project.set('revision',repository['branch'])
@@ -203,7 +203,7 @@ def add_to_manifest(repositories, fallback_branch = None):
 
 def fetch_dependencies(repo_path, fallback_branch = None):
     print('Looking for dependencies in %s' % repo_path)
-    dependencies_path = repo_path + '/syberia.dependencies'
+    dependencies_path = repo_path + '/xtended.dependencies'
     syncable_repos = []
     verify_repos = []
 
@@ -299,4 +299,4 @@ else:
             print("Done")
             sys.exit()
 
-print("Repository for %s not found in the Syberia Project Github repository list. If this is in error, you may need to manually add it to your local_manifests/roomservice.xml." % device)
+print("Repository for %s not found in the Project Xtended Github repository list. If this is in error, you may need to manually add it to your local_manifests/roomservice.xml." % device)

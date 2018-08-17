@@ -25,10 +25,10 @@ function mka() {
 function breakfast()
 {
     target=$1
-    SYBERIA_DEVICES_ONLY="true"
+    XTENDED_DEVICES_ONLY="true"
     unset LUNCH_MENU_CHOICES
     add_lunch_combo full-eng
-    for f in `/bin/ls vendor/syberia/vendorsetup.sh 2> /dev/null`
+    for f in `/bin/ls vendor/xtended/vendorsetup.sh 2> /dev/null`
         do
             echo "including $f"
             . $f
@@ -46,7 +46,7 @@ function breakfast()
             lunch $target
         else
             # This is probably just the SYBERIA model name
-            lunch syberia_$target-userdebug
+            lunch xtended_$target-userdebug
         fi
     fi
     return $?
